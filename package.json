@@ -1,0 +1,32 @@
+{
+  "name": "claudingcopilot",
+  "module": "src/index.ts",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "bun run --hot src/index.ts",
+    "start": "bun run src/index.ts",
+    "typecheck": "tsc --noEmit",
+    "lint": "biome check src/",
+    "lint:fix": "biome check --write src/",
+    "format": "biome format --write src/",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "drizzle-kit migrate",
+    "db:studio": "drizzle-kit studio",
+    "db:reset": "bun -e \"await Bun.write('data/claudingcopilot.db', '')\" && drizzle-kit migrate"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.3.11",
+    "@libsql/client": "^0.15.15",
+    "@types/bun": "latest",
+    "drizzle-kit": "^0.31.8"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "dependencies": {
+    "drizzle-orm": "^0.45.1",
+    "hono": "^4.11.1",
+    "nanoid": "^5.1.6"
+  }
+}

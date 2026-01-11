@@ -1,0 +1,35 @@
+# Dependencies
+node_modules/
+
+# Database
+data/*.db
+data/*.db-journal
+*.sqlite
+*.sqlite-journal
+
+# Environment
+.env
+.env.local
+.env.*
+
+# Logs
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+.vscode/
+
+# Temp
+temp/
+tmp/
+
+# Build
+dist/
+build/
+
+# Bun
+bun.lockb

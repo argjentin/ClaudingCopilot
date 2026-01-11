@@ -1,0 +1,39 @@
+{
+	"$schema": "https://biomejs.dev/schemas/2.3.11/schema.json",
+	"assist": {
+		"actions": {
+			"source": {
+				"organizeImports": {
+					"level": "on"
+				}
+			}
+		}
+	},
+	"linter": {
+		"enabled": true,
+		"rules": {
+			"recommended": true,
+			"suspicious": {
+				"noExplicitAny": "off"
+			},
+			"a11y": {
+				"noSvgWithoutTitle": "off"
+			},
+			"style": {
+				"noNonNullAssertion": "off",
+				"noDescendingSpecificity": "off"
+			},
+			"correctness": {
+				"noInnerDeclarations": "off"
+			}
+		}
+	},
+	"formatter": {
+		"enabled": true,
+		"indentStyle": "tab",
+		"indentWidth": 2
+	},
+	"files": {
+		"includes": ["src/**"]
+	}
+}

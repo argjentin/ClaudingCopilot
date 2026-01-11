@@ -1,0 +1,13 @@
+{
+  "version": "7",
+  "dialect": "sqlite",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "6",
+      "when": 1768146970265,
+      "tag": "0000_living_human_torch",
+      "breakpoints": true
+    }
+  ]
+}
