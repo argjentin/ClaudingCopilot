@@ -5,6 +5,33 @@ import { getPlatform } from "./utils.ts";
 
 const TEMP_DIR = "./temp";
 
+const LINUX_TERMINALS = [
+	{ cmd: "gnome-terminal", args: (script: string) => ["--", "bash", script] },
+	{ cmd: "konsole", args: (script: string) => ["-e", "bash", script] },
+	{
+		cmd: "xfce4-terminal",
+		args: (script: string) => ["-e", `bash "${script}"`],
+	},
+	{ cmd: "alacritty", args: (script: string) => ["-e", "bash", script] },
+	{ cmd: "kitty", args: (script: string) => ["bash", script] },
+	{ cmd: "wezterm", args: (script: string) => ["start", "--", "bash", script] },
+	{ cmd: "foot", args: (script: string) => ["bash", script] },
+	{ cmd: "tilix", args: (script: string) => ["-e", `bash "${script}"`] },
+	{ cmd: "terminator", args: (script: string) => ["-e", `bash "${script}"`] },
+	{
+		cmd: "mate-terminal",
+		args: (script: string) => ["-e", `bash "${script}"`],
+	},
+	{ cmd: "lxterminal", args: (script: string) => ["-e", `bash "${script}"`] },
+	{ cmd: "xterm", args: (script: string) => ["-hold", "-e", "bash", script] },
+	{ cmd: "urxvt", args: (script: string) => ["-hold", "-e", "bash", script] },
+	{ cmd: "st", args: (script: string) => ["-e", "bash", script] },
+	{
+		cmd: "x-terminal-emulator",
+		args: (script: string) => ["-e", `bash "${script}"`],
+	},
+];
+
 function getClaudeCommand(
 	featureFolderName: string,
 	taskFilename: string,
@@ -44,7 +71,7 @@ ${claudeCmd}
 `;
 	}
 
-	return `#!/bin/bash
+	return `#!/usr/bin/env bash
 cd "${projectPath}"
 ${claudeCmd}
 `;
@@ -78,7 +105,42 @@ function executeWindows(scriptPath: string): void {
 function executeMacOS(scriptPath: string): void {
 	const absolutePath = join(process.cwd(), scriptPath);
 	const escapedPath = absolutePath.replace(/"/g, '\\"');
-	const script = `tell app "Terminal" to do script "bash \\"${escapedPath}\\""`;
+
+	const userTerminal = process.env.TERMINAL;
+	let terminalApp = "Terminal";
+
+	if (userTerminal) {
+		terminalApp = userTerminal;
+	} else {
+		const termProgram = process.env.TERM_PROGRAM;
+		if (termProgram) {
+			const termMap: Record<string, string> = {
+				iTerm: "iTerm",
+				"iTerm.app": "iTerm",
+				Apple_Terminal: "Terminal",
+				kitty: "kitty",
+				Alacritty: "Alacritty",
+				WezTerm: "WezTerm",
+				Hyper: "Hyper",
+			};
+			terminalApp = termMap[termProgram] || terminalApp;
+		}
+	}
+
+	if (["kitty", "Alacritty", "WezTerm"].includes(terminalApp)) {
+		const cmdMap: Record<string, { cmd: string; args: string[] }> = {
+			kitty: { cmd: "kitty", args: ["bash", absolutePath] },
+			Alacritty: { cmd: "alacritty", args: ["-e", "bash", absolutePath] },
+			WezTerm: { cmd: "wezterm", args: ["start", "--", "bash", absolutePath] },
+		};
+		const config = cmdMap[terminalApp];
+		if (config) {
+			spawnSync(config.cmd, config.args, { stdio: "inherit" });
+			return;
+		}
+	}
+
+	const script = `tell app "${terminalApp}" to do script "bash \\"${escapedPath}\\""`;
 	spawnSync("osascript", ["-e", script], {
 		stdio: "inherit",
 	});
@@ -86,29 +148,47 @@ function executeMacOS(scriptPath: string): void {
 
 function executeLinux(scriptPath: string): void {
 	const absolutePath = join(process.cwd(), scriptPath);
+	const userTerminal = process.env.TERMINAL;
 
-	const terminals = [
-		{ cmd: "gnome-terminal", args: ["--", "bash", absolutePath] },
-		{ cmd: "konsole", args: ["-e", "bash", absolutePath] },
-		{ cmd: "xfce4-terminal", args: ["-e", `bash ${absolutePath}`] },
-		{ cmd: "xterm", args: ["-hold", "-e", "bash", absolutePath] },
-		{ cmd: "x-terminal-emulator", args: ["-e", "bash", absolutePath] },
-	];
+	if (userTerminal) {
+		const result = spawnSync("which", [userTerminal], { encoding: "utf-8" });
+		if (result.status === 0) {
+			const terminalConfig = LINUX_TERMINALS.find(
+				(t) => t.cmd === userTerminal,
+			);
+			const args = terminalConfig
+				? terminalConfig.args(absolutePath)
+				: ["-e", `bash "${absolutePath}"`];
+			spawnSync(userTerminal, args, { stdio: "inherit" });
+			return;
+		}
+		console.warn(
+			`Warning: Configured terminal '${userTerminal}' not found, falling back to auto-detection`,
+		);
+	}
 
-	for (const terminal of terminals) {
+	for (const terminal of LINUX_TERMINALS) {
 		const result = spawnSync("which", [terminal.cmd], { encoding: "utf-8" });
 		if (result.status === 0) {
-			spawnSync(terminal.cmd, terminal.args, {
+			spawnSync(terminal.cmd, terminal.args(absolutePath), {
 				stdio: "inherit",
 			});
 			return;
 		}
 	}
 
+	const triedTerminals = LINUX_TERMINALS.map((t) => t.cmd).join(", ");
+	console.error("No supported terminal emulator found.");
+	console.error(`Tried: ${triedTerminals}`);
+	console.error("");
+	console.error("Solutions:");
 	console.error(
-		"No supported terminal emulator found. Tried: gnome-terminal, konsole, xfce4-terminal, xterm, x-terminal-emulator",
+		"  1. Install a terminal emulator (e.g., apt install gnome-terminal)",
 	);
-	console.error("Please run the script manually:", absolutePath);
+	console.error(
+		"  2. Set TERMINAL env variable to your terminal's command name",
+	);
+	console.error("  3. Run the script manually:", absolutePath);
 }
 
 export function executeScript(scriptPath: string): void {

@@ -23,6 +23,8 @@ When working with Claude Code on complex projects, you often need to:
 - **Web dashboard** - Monitor progress, view metrics, manage projects
 - **Metrics tracking** - Duration per task and feature
 - **Rate limit detection** - Pauses automatically when rate limited
+- **Cross-platform** - Works on Windows, macOS, and Linux
+- **Zero external dependencies** - Uses Bun native APIs (no curl, jq, or shell tools required)
 
 ## Quick Start
 
@@ -162,6 +164,7 @@ GIT_MAIN_BRANCH=main
 | `PORT` | Server port | `3000` |
 | `GIT_MAIN_BRANCH` | Main branch name for git operations | `main` |
 | `API_BASE_URL` | Override callback URL (for Docker/production) | `http://localhost:${PORT}` |
+| `TERMINAL` | Force a specific terminal emulator (Linux/macOS) | Auto-detected |
 
 ### Project Options
 
@@ -216,6 +219,18 @@ Configure authentication with Better Auth library.
 │                                                              │
 └──────────────────────────────────────────────────────────────┘
 ```
+
+## Platform Support
+
+ClaudingCopilot runs on **Windows**, **macOS**, and **Linux** without any external dependencies beyond Bun, Git, and Claude Code.
+
+| Platform | Terminal Support |
+|----------|-----------------|
+| Windows | cmd.exe |
+| macOS | Terminal.app, iTerm, kitty, Alacritty, WezTerm |
+| Linux | gnome-terminal, konsole, xfce4-terminal, alacritty, kitty, wezterm, xterm, and more |
+
+Override terminal detection with the `TERMINAL` environment variable if needed.
 
 ## Tech Stack
 
