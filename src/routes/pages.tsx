@@ -440,11 +440,17 @@ function toggleWorkBranch(mode) {
 
 function toggleGitOptions() {
   var autoCommit = document.getElementById('autoCommit').checked;
+  var autoPush = document.getElementById('autoPush');
   var gitOptions = document.getElementById('gitOptionsGroup');
   var manualInfo = document.getElementById('manualModeInfo');
 
   gitOptions.style.display = autoCommit ? 'block' : 'none';
   manualInfo.style.display = autoCommit ? 'none' : 'block';
+
+  // When disabling autoCommit, also disable autoPush for consistency
+  if (!autoCommit) {
+    autoPush.checked = false;
+  }
 }
 `,
 				}}
