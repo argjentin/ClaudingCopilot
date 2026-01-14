@@ -27,6 +27,10 @@ import {
 	getTaskBranchName,
 	scanFeatures,
 } from "../lib/tasks.ts";
+import {
+	formatToolVerificationError,
+	verifyRequiredTools,
+} from "../lib/utils.ts";
 
 const api = new Hono();
 
@@ -300,6 +304,21 @@ api.post("/projects/:id/scan", async (c) => {
 
 api.post("/projects/:id/start", async (c) => {
 	const { id } = c.req.param();
+
+	// Verify required tools are available before starting
+	const toolCheck = verifyRequiredTools();
+	if (!toolCheck.ok) {
+		const errorMessage = formatToolVerificationError(toolCheck);
+		console.error(errorMessage);
+		return c.json(
+			{
+				error: "Missing required tools",
+				missing: toolCheck.missing,
+				details: errorMessage,
+			},
+			400,
+		);
+	}
 
 	const project = db.select().from(projects).where(eq(projects.id, id)).get();
 
