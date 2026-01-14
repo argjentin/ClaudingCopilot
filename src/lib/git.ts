@@ -136,7 +136,7 @@ export function mergeBranch(
 ): void {
 	try {
 		if (message) {
-			git(projectPath, "merge", branchName, "-m", `"${message}"`);
+			git(projectPath, "merge", "--no-ff", branchName, "-m", `"${message}"`);
 		} else {
 			git(projectPath, "merge", branchName, "--no-edit");
 		}
@@ -334,6 +334,12 @@ export async function completeWorkBranch(
 	autoPush = true,
 ): Promise<void> {
 	try {
+		commitAll(projectPath, `wip: final sync before merge`);
+
+		if (autoPush) {
+			await push(projectPath);
+		}
+
 		checkoutMain(projectPath);
 
 		pull(projectPath);

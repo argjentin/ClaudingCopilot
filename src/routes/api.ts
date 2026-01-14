@@ -488,7 +488,7 @@ api.post("/tasks/:id/complete", async (c) => {
 		.where(eq(tasks.id, id))
 		.run();
 
-	if (newStatus === "done") {
+	if (newStatus === "done" && project.autoCommit) {
 		if (
 			project.branchingMode === "branching" &&
 			task.branchName &&
@@ -556,7 +556,11 @@ api.post("/tasks/:id/complete", async (c) => {
 		.where(eq(features.id, feature.id))
 		.run();
 
-	if (project.branchingMode === "branching" && feature.branchName) {
+	if (
+		project.autoCommit &&
+		project.branchingMode === "branching" &&
+		feature.branchName
+	) {
 		try {
 			await completeFeatureBranch(
 				project.path,
@@ -617,7 +621,11 @@ api.post("/tasks/:id/complete", async (c) => {
 		}
 	}
 
-	if (project.branchingMode === "single-branch" && project.workBranch) {
+	if (
+		project.autoCommit &&
+		project.branchingMode === "single-branch" &&
+		project.workBranch
+	) {
 		try {
 			await completeWorkBranch(
 				project.path,
@@ -654,21 +662,23 @@ function startFeatureAndTask(
 	project: Project,
 	isFirstFeature: boolean,
 ): void {
-	if (project.branchingMode === "branching") {
-		try {
-			createFeatureBranch(projectPath, feature.branchName!);
-		} catch (error) {
-			console.error("Failed to create feature branch:", error);
-		}
-	} else if (
-		project.branchingMode === "single-branch" &&
-		project.workBranch &&
-		isFirstFeature
-	) {
-		try {
-			setupWorkBranch(projectPath, project.workBranch);
-		} catch (error) {
-			console.error("Failed to setup work branch:", error);
+	if (project.autoCommit) {
+		if (project.branchingMode === "branching") {
+			try {
+				createFeatureBranch(projectPath, feature.branchName!);
+			} catch (error) {
+				console.error("Failed to create feature branch:", error);
+			}
+		} else if (
+			project.branchingMode === "single-branch" &&
+			project.workBranch &&
+			isFirstFeature
+		) {
+			try {
+				setupWorkBranch(projectPath, project.workBranch);
+			} catch (error) {
+				console.error("Failed to setup work branch:", error);
+			}
 		}
 	}
 
@@ -691,7 +701,11 @@ function startTask(
 ): void {
 	let taskBranchName: string | null = null;
 
-	if (project.branchingMode === "branching" && feature.branchName) {
+	if (
+		project.autoCommit &&
+		project.branchingMode === "branching" &&
+		feature.branchName
+	) {
 		taskBranchName = getTaskBranchName(feature.number, task.number, task.title);
 		try {
 			createTaskBranchFromFeature(
