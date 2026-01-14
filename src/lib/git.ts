@@ -236,6 +236,7 @@ export function createTaskBranchFromFeature(
 	taskBranchName: string,
 ): void {
 	checkoutBranch(projectPath, featureBranchName);
+	pullBranch(projectPath, featureBranchName);
 	createBranch(projectPath, taskBranchName);
 	console.log(
 		`Created task branch: ${taskBranchName} from ${featureBranchName}`,
@@ -288,6 +289,14 @@ export async function completeFeatureBranch(
 	autoPush = true,
 ): Promise<void> {
 	try {
+		checkoutBranch(projectPath, featureBranchName);
+
+		commitAll(projectPath, `wip: final sync before merge`);
+
+		if (autoPush) {
+			await push(projectPath);
+		}
+
 		checkoutMain(projectPath);
 
 		pull(projectPath);
