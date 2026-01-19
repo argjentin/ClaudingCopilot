@@ -21,7 +21,18 @@ async function main(): Promise<void> {
 	}
 
 	try {
-		const stdinText = await Bun.stdin.text();
+		// Read stdin with timeout to avoid blocking forever
+		const stdinPromise = Bun.stdin.text();
+		const timeoutPromise = new Promise<string>((_, reject) =>
+			setTimeout(() => reject(new Error("stdin timeout")), 5000)
+		);
+
+		let stdinText = "";
+		try {
+			stdinText = await Promise.race([stdinPromise, timeoutPromise]);
+		} catch {
+			stdinText = "{}";
+		}
 		const hookData: HookData = stdinText ? JSON.parse(stdinText) : {};
 
 		let rateLimited = false;
