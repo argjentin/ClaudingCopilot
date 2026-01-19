@@ -29,6 +29,10 @@ export function git(projectPath: string, ...args: string[]): string {
 	return result.stdout.trim();
 }
 
+export function getCurrentBranch(projectPath: string): string {
+	return git(projectPath, "rev-parse", "--abbrev-ref", "HEAD");
+}
+
 export function createBranch(projectPath: string, branchName: string): void {
 	try {
 		git(projectPath, "checkout", "-b", branchName);

@@ -14,7 +14,6 @@ export function generateHookConfig(taskId: string): HookConfig {
 		hooks: {
 			Stop: [
 				{
-					matcher: "",
 					hooks: [
 						{
 							type: "command",

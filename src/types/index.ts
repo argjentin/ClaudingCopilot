@@ -49,8 +49,8 @@ export interface ScannedFeature {
 
 export interface HookConfig {
 	hooks?: {
+		// Stop hook doesn't use matcher
 		Stop?: Array<{
-			matcher: string;
 			hooks: Array<{
 				type: string;
 				command: string;

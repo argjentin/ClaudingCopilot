@@ -18,6 +18,7 @@ import {
 	completeWorkBranch,
 	createFeatureBranch,
 	createTaskBranchFromFeature,
+	getCurrentBranch,
 	setupWorkBranch,
 } from "../lib/git.ts";
 import { removeHookFromProject, writeHookToProject } from "../lib/hooks.ts";
@@ -80,11 +81,16 @@ api.post("/projects", async (c) => {
 		(branchingMode as "branching" | "single-branch" | "disabled") ||
 		"branching";
 
-	if (mode === "single-branch" && !workBranch) {
-		return c.json(
-			{ error: "workBranch is required for single-branch mode" },
-			400,
-		);
+	let resolvedWorkBranch = workBranch || null;
+	if (mode === "single-branch" && !resolvedWorkBranch) {
+		try {
+			resolvedWorkBranch = getCurrentBranch(path);
+		} catch (error) {
+			return c.json(
+				{ error: "Failed to get current branch from project path" },
+				400,
+			);
+		}
 	}
 
 	const id = nanoid();
@@ -93,7 +99,7 @@ api.post("/projects", async (c) => {
 		name,
 		path,
 		branchingMode: mode,
-		workBranch: workBranch || null,
+		workBranch: resolvedWorkBranch,
 		autoCommit: mode === "disabled" ? false : autoCommit !== false,
 		autoPush: mode === "disabled" ? false : autoPush !== false,
 		status: "idle" as const,
