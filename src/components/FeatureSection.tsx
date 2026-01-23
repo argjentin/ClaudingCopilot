@@ -27,7 +27,7 @@ export const FeatureSection: FC<FeatureSectionProps> = ({
 		>
 			<div
 				class="feature-header"
-				style="padding: 1rem 1.25rem; background: rgba(2, 6, 23, 0.4); border-bottom: 1px solid rgba(255, 255, 255, 0.05); cursor: pointer; display: flex; align-items: center; justify-content: space-between;"
+				style="padding: 1rem 1.25rem; background: var(--bg-surface); border-bottom: 1px solid var(--border-subtle); cursor: pointer; display: flex; align-items: center; justify-content: space-between;"
 				onclick={`toggleFeature('${featureId}')`}
 			>
 				<div style="display: flex; align-items: center; gap: 1rem; min-width: 0; flex: 1;">
@@ -52,7 +52,7 @@ export const FeatureSection: FC<FeatureSectionProps> = ({
 						</svg>
 					</span>
 
-					<span style="width: 36px; min-width: 36px; height: 36px; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1); background: rgba(139, 92, 246, 0.1); display: flex; align-items: center; justify-content: center; font-size: 0.875rem; font-weight: 700; color: var(--claude-purple); flex-shrink: 0;">
+					<span style="width: 36px; min-width: 36px; height: 36px; border-radius: 8px; border: 1px solid var(--border-subtle); background: rgba(196, 167, 125, 0.15); display: flex; align-items: center; justify-content: center; font-size: 0.875rem; font-weight: 700; color: var(--claude-copper-dark); flex-shrink: 0;">
 						{String(feature.number).padStart(2, "0")}
 					</span>
 
@@ -94,7 +94,7 @@ export const FeatureSection: FC<FeatureSectionProps> = ({
 					)}
 
 					<div style="display: flex; align-items: center; gap: 0.5rem; min-width: 80px;">
-						<div style="flex: 1; height: 4px; background: rgba(255, 255, 255, 0.1); border-radius: 2px; overflow: hidden;">
+						<div style="flex: 1; height: 4px; background: var(--border-subtle); border-radius: 2px; overflow: hidden;">
 							<div
 								style={`height: 100%; background: var(--success-glow); width: ${progress}%; transition: width 0.3s ease;`}
 							></div>
@@ -122,7 +122,7 @@ export const FeatureSection: FC<FeatureSectionProps> = ({
 				style={`overflow: hidden; transition: max-height 0.3s ease; ${isExpanded ? "" : "max-height: 0;"}`}
 			>
 				{feature.context && (
-					<div style="padding: 0.75rem 1.25rem; background: rgba(139, 92, 246, 0.05); border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
+					<div style="padding: 0.75rem 1.25rem; background: rgba(196, 167, 125, 0.08); border-bottom: 1px solid var(--border-subtle);">
 						<div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
 							<svg
 								width="12"
@@ -130,7 +130,7 @@ export const FeatureSection: FC<FeatureSectionProps> = ({
 								fill="none"
 								stroke="currentColor"
 								viewBox="0 0 24 24"
-								style="color: var(--claude-purple);"
+								style="color: var(--claude-copper-dark);"
 							>
 								<path
 									stroke-linecap="round"
@@ -139,7 +139,7 @@ export const FeatureSection: FC<FeatureSectionProps> = ({
 									d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
 								/>
 							</svg>
-							<span style="font-size: 0.625rem; font-weight: 700; text-transform: uppercase; color: var(--claude-purple);">
+							<span style="font-size: 0.625rem; font-weight: 700; text-transform: uppercase; color: var(--claude-copper-dark);">
 								Feature Context
 							</span>
 						</div>

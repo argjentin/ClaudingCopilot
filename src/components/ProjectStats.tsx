@@ -30,7 +30,7 @@ export const ProjectStats: FC<ProjectStatsProps> = ({ tasks }) => {
 				</div>
 				<div
 					class="stat-icon"
-					style="background: rgba(139, 92, 246, 0.1); color: var(--claude-purple);"
+					style="background: rgba(196, 167, 125, 0.15); color: var(--claude-copper-dark);"
 				>
 					<svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
 						<path
@@ -102,7 +102,7 @@ export const ProjectStats: FC<ProjectStatsProps> = ({ tasks }) => {
 				</div>
 				<div
 					class="stat-icon"
-					style="background: rgba(59, 130, 246, 0.1); color: #3b82f6;"
+					style="background: rgba(196, 167, 125, 0.15); color: var(--claude-copper);"
 				>
 					<svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
 						<path

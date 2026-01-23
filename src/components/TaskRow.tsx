@@ -13,7 +13,7 @@ export const TaskRow: FC<TaskRowProps> = ({ task }) => {
 		<tr>
 			<td>
 				<div style="display: flex; align-items: center; gap: 0.75rem;">
-					<span style="width: 32px; height: 32px; border-radius: 6px; border: 1px solid rgba(255, 255, 255, 0.1); display: flex; align-items: center; justify-content: center; font-size: 0.75rem; color: var(--text-muted);">
+					<span style="width: 32px; height: 32px; border-radius: 6px; border: 1px solid var(--border-subtle); display: flex; align-items: center; justify-content: center; font-size: 0.75rem; color: var(--text-muted);">
 						{String(task.number).padStart(2, "0")}
 					</span>
 				</div>

@@ -15,7 +15,7 @@ export const ProjectCard: FC<ProjectCardProps> = ({ project, taskCounts }) => {
 
 	return (
 		<div class="glass-card" style="overflow: hidden;">
-			<div style="padding: 1.25rem; border-bottom: 1px solid rgba(255, 255, 255, 0.05); display: flex; align-items: flex-start; justify-content: space-between;">
+			<div style="padding: 1.25rem; border-bottom: 1px solid var(--border-subtle); display: flex; align-items: flex-start; justify-content: space-between;">
 				<div style="display: flex; flex-direction: column; gap: 0.25rem;">
 					<div style="display: flex; align-items: center; gap: 0.5rem;">
 						<a
@@ -70,11 +70,11 @@ export const ProjectCard: FC<ProjectCardProps> = ({ project, taskCounts }) => {
 				</button>
 			</div>
 
-			<div style="padding: 1.25rem; background: rgba(2, 6, 23, 0.3);">
+			<div style="padding: 1.25rem; background: var(--bg-surface);">
 				<div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 0.75rem;">
 					<div style="color: var(--text-muted); font-size: 0.75rem;">
 						{taskCounts.features !== undefined && taskCounts.features > 0 && (
-							<span style="color: var(--claude-purple); font-weight: 700;">
+							<span style="color: var(--claude-copper-dark); font-weight: 700;">
 								{taskCounts.features} features
 							</span>
 						)}
@@ -96,7 +96,7 @@ export const ProjectCard: FC<ProjectCardProps> = ({ project, taskCounts }) => {
 				</div>
 
 				<div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.5rem; margin-top: 1rem;">
-					<div style="background: rgba(2, 6, 23, 0.5); padding: 0.75rem; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.05);">
+					<div style="background: var(--bg-primary); padding: 0.75rem; border-radius: 8px; border: 1px solid var(--border-subtle);">
 						<div style="font-size: 0.5625rem; color: var(--text-dimmed); text-transform: uppercase; margin-bottom: 0.25rem;">
 							Total
 						</div>
@@ -104,7 +104,7 @@ export const ProjectCard: FC<ProjectCardProps> = ({ project, taskCounts }) => {
 							{taskCounts.total}
 						</div>
 					</div>
-					<div style="background: rgba(2, 6, 23, 0.5); padding: 0.75rem; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.05);">
+					<div style="background: var(--bg-primary); padding: 0.75rem; border-radius: 8px; border: 1px solid var(--border-subtle);">
 						<div style="font-size: 0.5625rem; color: var(--text-dimmed); text-transform: uppercase; margin-bottom: 0.25rem;">
 							Done
 						</div>
@@ -112,7 +112,7 @@ export const ProjectCard: FC<ProjectCardProps> = ({ project, taskCounts }) => {
 							{taskCounts.done}
 						</div>
 					</div>
-					<div style="background: rgba(2, 6, 23, 0.5); padding: 0.75rem; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.05);">
+					<div style="background: var(--bg-primary); padding: 0.75rem; border-radius: 8px; border: 1px solid var(--border-subtle);">
 						<div style="font-size: 0.5625rem; color: var(--text-dimmed); text-transform: uppercase; margin-bottom: 0.25rem;">
 							Running
 						</div>
@@ -120,7 +120,7 @@ export const ProjectCard: FC<ProjectCardProps> = ({ project, taskCounts }) => {
 							{taskCounts.running}
 						</div>
 					</div>
-					<div style="background: rgba(2, 6, 23, 0.5); padding: 0.75rem; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.05);">
+					<div style="background: var(--bg-primary); padding: 0.75rem; border-radius: 8px; border: 1px solid var(--border-subtle);">
 						<div style="font-size: 0.5625rem; color: var(--text-dimmed); text-transform: uppercase; margin-bottom: 0.25rem;">
 							Pending
 						</div>
@@ -131,7 +131,7 @@ export const ProjectCard: FC<ProjectCardProps> = ({ project, taskCounts }) => {
 				</div>
 			</div>
 
-			<div style="padding: 1rem 1.25rem; background: rgba(2, 6, 23, 0.8); display: flex; align-items: center; justify-content: flex-end;">
+			<div style="padding: 1rem 1.25rem; background: var(--bg-surface); display: flex; align-items: center; justify-content: flex-end;">
 				<a
 					href={`/projects/${project.id}`}
 					class="btn btn-secondary"
