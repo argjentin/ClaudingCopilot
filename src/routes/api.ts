@@ -85,7 +85,7 @@ api.post("/projects", async (c) => {
 	if (mode === "single-branch" && !resolvedWorkBranch) {
 		try {
 			resolvedWorkBranch = getCurrentBranch(path);
-		} catch (error) {
+		} catch (_error) {
 			return c.json(
 				{ error: "Failed to get current branch from project path" },
 				400,

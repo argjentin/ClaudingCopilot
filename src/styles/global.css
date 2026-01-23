@@ -1,3 +1,6 @@
+/* JetBrains Mono for code - must be first */
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap");
+
 /* Tiempos Text font family */
 @font-face {
 	font-family: "Tiempos Text";
@@ -21,9 +24,6 @@
 	font-display: swap;
 }
 
-/* JetBrains Mono for code */
-@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap");
-
 * {
 	box-sizing: border-box;
 	margin: 0;
@@ -32,33 +32,33 @@
 
 :root {
 	/* Background colors - warm cream palette */
-	--bg-primary: #FAF9F6;
-	--bg-surface: #F5F1EB;
+	--bg-primary: #faf9f6;
+	--bg-surface: #f5f1eb;
 	--bg-card: rgba(245, 241, 235, 0.85);
 
 	/* Text colors - dark brown tones */
-	--text-primary: #2D2A26;
-	--text-muted: #5C5544;
-	--text-dimmed: #8B8475;
+	--text-primary: #2d2a26;
+	--text-muted: #5c5544;
+	--text-dimmed: #8b8475;
 
 	/* Border colors */
 	--border-subtle: rgba(180, 165, 140, 0.25);
 	--border-hover: rgba(196, 167, 125, 0.6);
 
 	/* Claude Copper accent palette */
-	--claude-copper: #C4A77D;
-	--claude-copper-light: #D4B896;
-	--claude-copper-dark: #A67C52;
-	--claude-tan: #E8DCC8;
+	--claude-copper: #c4a77d;
+	--claude-copper-light: #d4b896;
+	--claude-copper-dark: #a67c52;
+	--claude-tan: #e8dcc8;
 
 	/* Status colors */
-	--success-glow: #7A9E7E;
-	--running-amber: #C9956C;
-	--fail-red: #C76D6D;
+	--success-glow: #7a9e7e;
+	--running-amber: #c9956c;
+	--fail-red: #c76d6d;
 
 	/* Code block colors */
 	--code-bg: #1a1816;
-	--code-text: #E8E0D4;
+	--code-text: #e8e0d4;
 
 	/* Spacing system */
 	--spacing-xs: 0.25rem;
@@ -140,7 +140,11 @@ a:hover {
 .header-logo {
 	width: 32px;
 	height: 32px;
-	background: linear-gradient(135deg, var(--claude-copper-light), var(--claude-copper));
+	background: linear-gradient(
+		135deg,
+		var(--claude-copper-light),
+		var(--claude-copper)
+	);
 	border-radius: var(--radius-sm);
 	display: flex;
 	align-items: center;
@@ -216,7 +220,11 @@ a:hover {
 }
 
 .btn-primary {
-	background: linear-gradient(135deg, var(--claude-copper), var(--claude-copper-dark));
+	background: linear-gradient(
+		135deg,
+		var(--claude-copper),
+		var(--claude-copper-dark)
+	);
 	color: white;
 	box-shadow: 0 4px 12px rgba(196, 167, 125, 0.3);
 }
@@ -356,7 +364,12 @@ a:hover {
 
 /* Copper gradient text */
 .text-gradient {
-	background: linear-gradient(135deg, var(--claude-copper-dark) 0%, var(--claude-copper) 50%, var(--claude-copper-light) 100%);
+	background: linear-gradient(
+		135deg,
+		var(--claude-copper-dark) 0%,
+		var(--claude-copper) 50%,
+		var(--claude-copper-light) 100%
+	);
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
 	background-clip: text;
@@ -373,7 +386,11 @@ a:hover {
 
 .progress-fill {
 	height: 100%;
-	background: linear-gradient(90deg, var(--claude-copper-dark) 0%, var(--claude-copper) 100%);
+	background: linear-gradient(
+		90deg,
+		var(--claude-copper-dark) 0%,
+		var(--claude-copper) 100%
+	);
 	transition: width 0.5s ease;
 }
 
@@ -799,7 +816,8 @@ a:hover {
 }
 
 @keyframes float {
-	0%, 100% {
+	0%,
+	100% {
 		transform: translateY(0);
 	}
 	50% {
@@ -808,7 +826,8 @@ a:hover {
 }
 
 @keyframes glow {
-	0%, 100% {
+	0%,
+	100% {
 		box-shadow: 0 0 20px rgba(196, 167, 125, 0.3);
 	}
 	50% {
@@ -840,7 +859,11 @@ a:hover {
 
 /* Copper themed highlights */
 .highlight-copper {
-	background: linear-gradient(135deg, rgba(196, 167, 125, 0.1), rgba(232, 220, 200, 0.2));
+	background: linear-gradient(
+		135deg,
+		rgba(196, 167, 125, 0.1),
+		rgba(232, 220, 200, 0.2)
+	);
 	border: 1px solid var(--border-subtle);
 	border-radius: var(--radius-lg);
 }
