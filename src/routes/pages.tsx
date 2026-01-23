@@ -49,10 +49,10 @@ pages.get("/", (c) => {
 				<div class="page-header-row">
 					<div>
 						<div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.5rem;">
-							<span style="color: var(--claude-purple); font-size: 0.625rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.2em;">
+							<span style="color: var(--claude-copper-dark); font-size: 0.625rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.2em;">
 								Dashboard
 							</span>
-							<div style="height: 1px; width: 100px; background: rgba(255, 255, 255, 0.1);"></div>
+							<div style="height: 1px; width: 100px; background: var(--border-subtle);"></div>
 						</div>
 						<h1 class="page-title">Orchestrator Overview</h1>
 					</div>
@@ -131,10 +131,10 @@ pages.get("/projects/new", (c) => {
 				<div class="page-header-row">
 					<div>
 						<div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.5rem;">
-							<span style="color: var(--claude-purple); font-size: 0.625rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.2em;">
+							<span style="color: var(--claude-copper-dark); font-size: 0.625rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.2em;">
 								New Project
 							</span>
-							<div style="height: 1px; width: 100px; background: rgba(255, 255, 255, 0.1);"></div>
+							<div style="height: 1px; width: 100px; background: var(--border-subtle);"></div>
 						</div>
 						<h1 class="page-title">Onboard New Repository</h1>
 					</div>
@@ -158,7 +158,7 @@ pages.get("/projects/new", (c) => {
 				</div>
 				<p class="page-subtitle">
 					Initialize a new orchestration environment. Place your features in{" "}
-					<code style="color: var(--claude-purple);">
+					<code style="color: var(--claude-copper-dark);">
 						/tasks/XX_tasks_name/
 					</code>{" "}
 					directories.
@@ -226,7 +226,7 @@ pages.get("/projects/new", (c) => {
 						</p>
 					</div>
 
-					<div style="padding: 1.25rem; background: rgba(139, 92, 246, 0.03); border: 1px solid rgba(139, 92, 246, 0.15); border-radius: 12px; margin-bottom: 1.5rem;">
+					<div style="padding: 1.25rem; background: rgba(196, 167, 125, 0.05); border: 1px solid rgba(196, 167, 125, 0.25); border-radius: 12px; margin-bottom: 1.5rem;">
 						<div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
 							<svg
 								width="16"
@@ -234,7 +234,7 @@ pages.get("/projects/new", (c) => {
 								fill="none"
 								stroke="currentColor"
 								viewBox="0 0 24 24"
-								style="color: var(--claude-purple);"
+								style="color: var(--claude-copper-dark);"
 							>
 								<path
 									stroke-linecap="round"
@@ -249,7 +249,7 @@ pages.get("/projects/new", (c) => {
 									d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
 								/>
 							</svg>
-							<span style="font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--claude-purple);">
+							<span style="font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--claude-copper-dark);">
 								Git Configuration
 							</span>
 						</div>
@@ -265,7 +265,7 @@ pages.get("/projects/new", (c) => {
 									name="autoCommit"
 									checked
 									onchange="toggleGitOptions()"
-									style="width: 18px; height: 18px; accent-color: var(--claude-purple); cursor: pointer;"
+									style="width: 18px; height: 18px; accent-color: var(--claude-copper-dark); cursor: pointer;"
 								/>
 								<span style="font-weight: 600;">Automatic Git Management</span>
 							</label>
@@ -279,7 +279,7 @@ pages.get("/projects/new", (c) => {
 						<div id="gitOptionsGroup">
 							<div
 								class="form-group"
-								style="margin-bottom: 1rem; padding-left: 2rem; border-left: 2px solid rgba(139, 92, 246, 0.2);"
+								style="margin-bottom: 1rem; padding-left: 2rem; border-left: 2px solid rgba(196, 167, 125, 0.3);"
 							>
 								<label
 									class="form-label"
@@ -312,7 +312,7 @@ pages.get("/projects/new", (c) => {
 							<div
 								id="workBranchGroup"
 								class="form-group"
-								style="display: none; margin-bottom: 1rem; padding-left: 2rem; border-left: 2px solid rgba(139, 92, 246, 0.2);"
+								style="display: none; margin-bottom: 1rem; padding-left: 2rem; border-left: 2px solid rgba(196, 167, 125, 0.3);"
 							>
 								<label
 									class="form-label"
@@ -336,7 +336,7 @@ pages.get("/projects/new", (c) => {
 
 							<div
 								class="form-group"
-								style="margin-bottom: 0; padding-left: 2rem; border-left: 2px solid rgba(139, 92, 246, 0.2);"
+								style="margin-bottom: 0; padding-left: 2rem; border-left: 2px solid rgba(196, 167, 125, 0.3);"
 							>
 								<label
 									class="form-label"
@@ -347,7 +347,7 @@ pages.get("/projects/new", (c) => {
 										id="autoPush"
 										name="autoPush"
 										checked
-										style="width: 16px; height: 16px; accent-color: var(--claude-purple); cursor: pointer;"
+										style="width: 16px; height: 16px; accent-color: var(--claude-copper-dark); cursor: pointer;"
 									/>
 									<span style="font-size: 0.85rem;">Automatic Push</span>
 								</label>
@@ -373,7 +373,7 @@ pages.get("/projects/new", (c) => {
 						</div>
 					</div>
 
-					<div style="padding: 1rem; background: rgba(139, 92, 246, 0.05); border: 1px solid rgba(139, 92, 246, 0.1); border-radius: 8px; margin-bottom: 1.5rem; overflow: hidden;">
+					<div style="padding: 1rem; background: rgba(196, 167, 125, 0.08); border: 1px solid rgba(196, 167, 125, 0.15); border-radius: 8px; margin-bottom: 1.5rem; overflow: hidden;">
 						<div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
 							<svg
 								width="14"
@@ -381,7 +381,7 @@ pages.get("/projects/new", (c) => {
 								fill="none"
 								stroke="currentColor"
 								viewBox="0 0 24 24"
-								style="color: var(--claude-purple);"
+								style="color: var(--claude-copper-dark);"
 							>
 								<path
 									stroke-linecap="round"
@@ -390,12 +390,12 @@ pages.get("/projects/new", (c) => {
 									d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
 								/>
 							</svg>
-							<span style="font-size: 0.625rem; font-weight: 700; text-transform: uppercase; color: var(--claude-purple);">
+							<span style="font-size: 0.625rem; font-weight: 700; text-transform: uppercase; color: var(--claude-copper-dark);">
 								Structure
 							</span>
 						</div>
 						<div style="overflow-x: auto;">
-							<pre style="font-size: 0.7rem; color: rgba(139, 92, 246, 0.8); line-height: 1.5; margin: 0; font-family: monospace; white-space: pre;">{`tasks/
+							<pre style="font-size: 0.7rem; color: var(--claude-copper-dark); line-height: 1.5; margin: 0; font-family: monospace; white-space: pre;">{`tasks/
 ├── 01_tasks_auth/
 │   ├── README.md
 │   ├── 01-setup.md
@@ -569,7 +569,7 @@ pages.get("/projects/:id", (c) => {
 						<div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.5rem;">
 							<a
 								href="/"
-								style="color: var(--claude-purple); font-size: 0.625rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.2em; text-decoration: none;"
+								style="color: var(--claude-copper-dark); font-size: 0.625rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.2em; text-decoration: none;"
 							>
 								<svg
 									width="12"
@@ -588,7 +588,7 @@ pages.get("/projects/:id", (c) => {
 								</svg>
 								Dashboard
 							</a>
-							<div style="height: 1px; width: 50px; background: rgba(255, 255, 255, 0.1);"></div>
+							<div style="height: 1px; width: 50px; background: var(--border-subtle);"></div>
 						</div>
 						<div style="display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap;">
 							<h1 class="page-title">{project.name}</h1>
@@ -613,7 +613,7 @@ pages.get("/projects/:id", (c) => {
 									) : (
 										<span
 											class="badge"
-											style="background: rgba(139, 92, 246, 0.1); color: rgb(167, 139, 250); border: 1px solid rgba(139, 92, 246, 0.2);"
+											style="background: rgba(196, 167, 125, 0.15); color: var(--claude-copper); border: 1px solid rgba(196, 167, 125, 0.3);"
 										>
 											branches
 										</span>
@@ -812,7 +812,7 @@ pages.get("/projects/:id", (c) => {
 					</p>
 					<p style="font-size: 0.75rem; color: var(--text-dimmed);">
 						Expected structure:{" "}
-						<code style="color: var(--claude-purple);">
+						<code style="color: var(--claude-copper-dark);">
 							tasks/01_tasks_feature_name/01-task.md
 						</code>
 					</p>

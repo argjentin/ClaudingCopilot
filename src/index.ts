@@ -14,6 +14,7 @@ app.use("*", logger());
 // Serve static files
 app.use("/styles/*", serveStatic({ root: "./src" }));
 app.use("/scripts/*", serveStatic({ root: "./src" }));
+app.use("/fonts/*", serveStatic({ root: "./public" }));
 
 // Mount API routes
 app.route("/api", api);
